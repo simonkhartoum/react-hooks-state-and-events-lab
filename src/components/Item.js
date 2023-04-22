@@ -1,12 +1,19 @@
-import React from "react";
+// import React from "react";
+import React,{useState} from "react";
+
 
 function Item({ name, category }) {
+  const [added, setIsOn] = useState(false);
+
+  function handlePush(){
+    setIsOn((added) => !added);
+  }
   return (
-    <li className="">
-      <span>{name}</span>
-      <span className="category">{category}</span>
-      <button className="add">Add to Cart</button>
-    </li>
+    <li className={added ? "in-cart" : ""}>
+    <span>{name}</span>
+    <span className="category">{category}</span>
+    <button className={added ? "remove": "add"} onClick={handlePush}>{added ? "Remove from Cart" : "Add to Cart"}</button>
+  </li>
   );
 }
 
